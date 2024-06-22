@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block content %}
+    <h1>Search Results</h1>
+    <p>Results for "{{ query }}":</p>
+    <ul>
+        {% for tweet in results %}
+            <li>
+                <div class="card" style="width: 18rem;">
+                    <img src="{{tweet.photo.url}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">{{tweet.user.username}}</h5>
+                      <p class="card-text">{{tweet.text}}</p>
+                    </div>
+                  </div>
+            </li>
+        {% empty %}
+            <li>No results found.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'tweet_list' %}">Back to Tweeet list</a>
+{% endblock %}
